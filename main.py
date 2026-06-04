@@ -20,6 +20,23 @@ def test():
     }
 
 
+@app.get("/test2")
+def test2():
+
+    headers = {
+        "User-Agent": "Mozilla/5.0"
+    }
+
+    url = "https://www.mercadolibre.com.uy"
+
+    r = requests.get(url, headers=headers)
+
+    return {
+        "status_code": r.status_code,
+        "largo_html": len(r.text)
+    }
+
+
 @app.get("/iphone")
 def buscar_iphone():
 
