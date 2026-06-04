@@ -31,7 +31,10 @@ def playwright_test():
 
             page = browser.new_page()
 
-            page.goto("https://www.google.com")
+            page.goto(
+                "https://www.google.com",
+                wait_until="domcontentloaded"
+            )
 
             titulo = page.title()
 
