@@ -5,3 +5,5 @@ sqlalchemy
 apscheduler
 python-telegram-bot
 pandas
+beautifulsoup4
+lxml
