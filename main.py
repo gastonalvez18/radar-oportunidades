@@ -50,12 +50,6 @@ def buscar_iphone():
 
     soup = BeautifulSoup(r.text, "lxml")
 
-    titulos = []
-
-    for h3 in soup.find_all("h3")[:20]:
-        titulos.append(h3.get_text())
-
     return {
-        "cantidad": len(titulos),
-        "titulos": titulos
+        "primeros_500_caracteres": soup.get_text()[:500]
     }
