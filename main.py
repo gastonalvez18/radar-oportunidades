@@ -12,13 +12,6 @@ def home():
     }
 
 
-@app.get("/test")
-def test():
-    return {
-        "ok": True
-    }
-
-
 @app.get("/playwright")
 def playwright_test():
 
@@ -26,7 +19,10 @@ def playwright_test():
 
         with sync_playwright() as p:
 
-            browser = p.chromium.launch(headless=True)
+            browser = p.chromium.launch(
+                channel="chromium",
+                headless=True
+            )
 
             page = browser.new_page()
 
