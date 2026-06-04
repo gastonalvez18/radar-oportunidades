@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 import requests
+from bs4 import BeautifulSoup
 
 app = FastAPI(title="Radar de Oportunidades")
 
