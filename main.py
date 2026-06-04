@@ -24,11 +24,15 @@ def buscar_iphone():
         "status_code": r.status_code,
         "respuesta": r.json()
     }
+
+
 @app.get("/test")
 def test():
     return {
         "ok": True
     }
+
+
 @app.get("/test2")
 def test2():
 
