@@ -21,11 +21,11 @@ def playwright_test():
 
             browser = p.chromium.launch(
                 headless=True,
+                executable_path="/ms-playwright/chromium-1223/chrome-linux/chrome",
                 args=[
                     "--no-sandbox",
                     "--disable-setuid-sandbox",
-                    "--disable-dev-shm-usage",
-                    "--disable-gpu"
+                    "--disable-dev-shm-usage"
                 ]
             )
 
