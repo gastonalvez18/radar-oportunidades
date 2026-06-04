@@ -4,3 +4,4 @@ requests
 sqlalchemy
 apscheduler
 python-telegram-bot
+pandas
