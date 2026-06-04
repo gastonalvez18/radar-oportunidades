@@ -19,16 +19,7 @@ def buscar_iphone():
 
     r = requests.get(url)
 
-    data = r.json()
-
-    resultados = []
-
-    for item in data.get("results", [])[:20]:
-
-        resultados.append({
-            "titulo": item.get("title"),
-            "precio": item.get("price"),
-            "link": item.get("permalink")
-        })
-
-    return resultados
+    return {
+        "status_code": r.status_code,
+        "respuesta": r.json()
+    }
