@@ -1,6 +1,5 @@
 from fastapi import FastAPI
-import requests
-from bs4 import BeautifulSoup
+from playwright.sync_api import sync_playwright
 
 app = FastAPI(title="Radar de Oportunidades")
 
@@ -20,36 +19,31 @@ def test():
     }
 
 
-@app.get("/test2")
-def test2():
+@app.get("/playwright")
+def playwright_test():
 
-    headers = {
-        "User-Agent": "Mozilla/5.0"
-    }
+    try:
 
-    url = "https://www.mercadolibre.com.uy"
+        with sync_playwright() as p:
 
-    r = requests.get(url, headers=headers)
+            browser = p.chromium.launch(headless=True)
 
-    return {
-        "status_code": r.status_code,
-        "largo_html": len(r.text)
-    }
+            page = browser.new_page()
 
+            page.goto("https://www.google.com")
 
-@app.get("/iphone")
-def buscar_iphone():
+            titulo = page.title()
 
-    headers = {
-        "User-Agent": "Mozilla/5.0"
-    }
+            browser.close()
 
-    url = "https://listado.mercadolibre.com.uy/iphone"
+            return {
+                "ok": True,
+                "titulo": titulo
+            }
 
-    r = requests.get(url, headers=headers)
+    except Exception as e:
 
-    soup = BeautifulSoup(r.text, "lxml")
-
-    return {
-        "primeros_500_caracteres": soup.get_text()[:500]
-    }
+        return {
+            "ok": False,
+            "error": str(e)
+        }
