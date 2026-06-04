@@ -23,3 +23,8 @@ def buscar_iphone():
         "status_code": r.status_code,
         "respuesta": r.json()
     }
+@app.get("/test")
+def test():
+    return {
+        "ok": True
+    }
